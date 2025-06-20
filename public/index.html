@@ -59,7 +59,7 @@
             position: relative;
             width: 100%;
             min-height: 300px;
-            background: url('A1.jpg') no-repeat center center; /* Use a local image as background */
+            background: url('A2.jpg') no-repeat center center;
             background-size: cover;
             color: #fff;
             text-align: left;
@@ -139,6 +139,13 @@
             height: 200px;
             object-fit: cover;
             object-position: center;
+        }
+        .framed-carousel {
+            border: 5px solid #0066cc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: #fff;
         }
         .booking-section {
             width: 100%;
@@ -292,7 +299,7 @@
             position: relative;
             width: 100%;
             height: 300px;
-            background: url('A1.jpg') no-repeat center center; /* Use a local image as background */
+            background: url('A2.jpg') no-repeat center center;
             background-size: cover;
             margin: 0 auto;
             display: flex;
@@ -423,6 +430,9 @@
             .carousel-container img {
                 height: 300px;
             }
+            .framed-carousel img {
+                height: 300px;
+            }
             .booking-section {
                 flex: 2;
                 height: 300px;
@@ -513,6 +523,12 @@
                 text-align: left;
             }
         }
+        /* Add gap on mobile view between hero-section and first carousel */
+        @media (max-width: 767px) {
+            .hero-section {
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -520,7 +536,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#home">
-                <img src="Azwel_logo.png" alt="Azwel Travel Agency Logo"> <!-- Adjust if filename differs -->
+                <img src="Azwel_%20logo.png" alt="Azwel Travel Agency Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -547,13 +563,13 @@
                 <h1 class="hero-title">Welcome to Azwel Travel Agency</h1>
                 <p>Explore the world with us! Celebrate our excellence in travel services.</p>
                 <a href="#booking" class="action-button">Save up to 10%</a>
-                <img src="Azwel_logo.png" alt="Azwel Travel Agency Logo" class="hero-logo"> <!-- Adjust if filename differs -->
+                <img src="Azwel_%20logo.png" alt="Azwel Travel Agency Logo" class="hero-logo">
             </div>
         </div>
         <!-- Booking Section with Carousels -->
         <div class="booking-container">
             <div class="carousel-container">
-                <div id="leftCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div id="leftCarousel" class="carousel slide framed-carousel" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="A1.jpg" class="d-block" alt="Left Image A1">
@@ -626,7 +642,7 @@
                 </div>
             </div>
             <div class="carousel-container">
-                <div id="rightCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div id="rightCarousel" class="carousel slide framed-carousel" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="B1.jpg" class="d-block" alt="Right Image B1">
@@ -750,7 +766,7 @@
         <p>We're here to assist you with your travel needs.</p>
         <p><strong>Company Name:</strong> Azwel Travel Agency (PTY) LTD</p>
         <p><strong>Email:</strong> info@azweltravel.co.za</p>
-        <p><strong>Phone:</strong> +27 123 456-7890</p>
+        <p><strong>Phone:</strong> +27 78 675 6214</p>
         <p><strong>Address:</strong> 17 Inverary Street, East London, South Africa</p>
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5!2d27.9123!3d-33.0153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAwJzU0LjciUyAyN8KwNTQnNDMuNiJF!5e0!3m2!1sen!2sza!4v1701001234567" width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -765,7 +781,7 @@
                 <p>Benefit from app-exclusive offers, personalised notifications, seamless booking functions, journey tracking and more.</p>
                 <a href="#">Learn more</a>
             </div>
-            <img src="app_screenshot.png" alt="Azwel App Screenshot" class="app-screenshot"> <!-- Adjust if filename differs -->
+            <img src="app_screenshot.png" alt="Azwel App Screenshot" class="app-screenshot">
         </div>
     </div>
 
@@ -849,7 +865,7 @@
 
     <!-- Footer Section -->
     <footer>
-        <p>© Azwel Travel Agency (PTY) LTD 2025. All rights reserved.<br>Contact: info@azweltravel.co.za | +27 123 456-7890 | 17 Inverary Street, East London, South Africa</p>
+        <p>© Zwesta Empire 2025. All rights reserved.<br>Contact: info@azweltravel.co.za | +27 78 675 6214 | 17 Inverary Street, East London, South Africa</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
