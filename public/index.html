@@ -1,963 +1,965 @@
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Azwel Travel Agency - Home</title>
-       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-       <style>
-           body {
-               font-family: 'Poppins', sans-serif;
-               background: #f5e8c7;
-               color: #333;
-               margin: 0;
-               padding: 0;
-               overflow-x: hidden;
-               min-height: 100vh;
-               display: flex;
-               flex-direction: column;
-           }
-           .navbar {
-               background: #ff6200;
-               padding: 15px 0;
-           }
-           .navbar-brand img {
-               height: 40px;
-               width: auto;
-           }
-           .nav-link {
-               color: #fff !important;
-               font-family: 'Montserrat', sans-serif;
-               font-size: 16px;
-           }
-           .nav-link:hover, .nav-link.active {
-               color: #b3d7ff !important;
-           }
-           .section {
-               padding: 30px 15px;
-               text-align: center;
-               display: none;
-               flex: 1 0 auto;
-           }
-           .section.active {
-               display: block !important;
-           }
-           h1 {
-               font-family: 'Montserrat', sans-serif;
-               color: #0066cc;
-               margin-bottom: 15px;
-               font-size: 24px;
-           }
-           p {
-               font-size: 16px;
-               margin-bottom: 15px;
-           }
-           /* Hero Section Styling */
-           .hero-section {
-               position: relative;
-               width: 100%;
-               min-height: 300px;
-               background: url('https://static.app/sites/phnt9wd0ul/files?path=/public/cover.jpg') no-repeat center center;
-               background-size: cover;
-               color: #fff;
-               text-align: left;
-               padding: 0;
-               margin: 0;
-           }
-           .hero-overlay {
-               position: absolute;
-               top: 0;
-               left: 0;
-               width: 100%;
-               height: 100%;
-               background: rgba(255, 98, 0, 0.6);
-           }
-           .hero-content {
-               position: relative;
-               z-index: 1;
-               max-width: 100%;
-               padding: 20px;
-           }
-           .hero-badge {
-               background: #0066cc;
-               color: #fff;
-               padding: 8px 16px;
-               border-radius: 5px;
-               font-size: 14px;
-               display: inline-block;
-               margin-bottom: 10px;
-           }
-           .hero-title {
-               background-color: #0066cc;
-               color: #fff;
-               padding: 8px 16px;
-               margin-left: -16px;
-               display: inline-block;
-               font-size: 20px;
-           }
-           .hero-logo {
-               position: relative;
-               display: block;
-               max-width: 100px;
-               height: auto;
-               margin: 10px 0 10px 10px;
-               z-index: 2;
-           }
-           .action-button {
-               background: #ffaa00;
-               color: #fff;
-               padding: 8px 16px;
-               border-radius: 5px;
-               font-family: 'Montserrat', sans-serif;
-               font-weight: 600;
-               text-decoration: none;
-               transition: background 0.3s;
-               display: inline-block;
-               margin-bottom: 10px;
-               font-size: 14px;
-           }
-           .action-button:hover {
-               background: #cc8800;
-           }
-           /* Booking Section with Carousels Styling */
-           .booking-container {
-               display: flex;
-               flex-direction: column;
-               align-items: center;
-               margin: 0;
-               padding: 0;
-               width: 100%;
-           }
-           .carousel-container {
-               width: 100%;
-               margin-bottom: 20px;
-           }
-           .carousel-container img {
-               width: 100%;
-               height: 200px;
-               object-fit: cover;
-               object-position: center;
-           }
-           .booking-section {
-               width: 100%;
-               background: #fff;
-               padding: 20px;
-               border-radius: 10px;
-               box-shadow: 0 0 15px rgba(0,0,0,0.1);
-               margin: 10px 0;
-               height: auto;
-               display: flex;
-               flex-direction: column;
-               justify-content: space-between;
-           }
-           .booking-section .form-group {
-               margin-bottom: 10px;
-           }
-           .booking-section label {
-               font-weight: 600;
-               color: #333;
-               font-size: 14px;
-           }
-           .booking-section select, .booking-section input {
-               width: 100%;
-               padding: 8px;
-               border: 1px solid #ccc;
-               border-radius: 5px;
-               font-size: 14px;
-           }
-           .booking-section .btn-primary {
-               background: #ffaa00;
-               border-color: #ffaa00;
-               padding: 10px 20px;
-               font-size: 14px;
-           }
-           .booking-section .btn-primary:hover {
-               background: #cc8800;
-               border-color: #cc8800;
-           }
-           .trip-planning {
-               text-align: center;
-               padding: 20px 0;
-           }
-           .trip-planning h2 {
-               color: #0066cc;
-               font-size: 20px;
-               margin-bottom: 10px;
-           }
-           .trip-planning p {
-               color: #666;
-               font-size: 14px;
-           }
-           #gallery .gallery-grid, #contacts .map-container {
-               /* Existing styles remain unchanged */
-           }
-           .management-grid {
-               display: grid;
-               grid-template-columns: 1fr;
-               gap: 20px;
-               max-width: 100%;
-               margin: 0 auto;
-               padding: 20px;
-           }
-           .management-card {
-               background: #fff;
-               padding: 15px;
-               border-radius: 10px;
-               box-shadow: 0 0 10px rgba(0,0,0,0.1);
-               text-align: center;
-               position: relative;
-           }
-           .management-card img {
-               width: 100%;
-               height: 250px;
-               object-fit: cover;
-               object-position: center;
-               border-radius: 5px;
-               background-color: #e0e0e0;
-           }
-           .management-card h3 {
-               margin: 10px 0;
-               color: #0066cc;
-               font-size: 18px;
-           }
-           .management-card p {
-               font-size: 12px;
-               color: #666;
-           }
-           footer {
-               background: #0066cc;
-               color: #fff;
-               padding: 15px 0;
-               text-align: center;
-               font-size: 12px;
-               font-family: 'Poppins', sans-serif;
-               margin-top: auto;
-           }
-           footer p {
-               margin: 0;
-               font-size: 10px;
-           }
-           /* Subscription Section Styling */
-           .subscription-section {
-               background: #000;
-               color: #fff;
-               padding: 20px 15px;
-               text-align: center;
-               margin: 0 auto;
-               max-width: 100%;
-           }
-           .subscription-section h2 {
-               font-size: 20px;
-               margin-bottom: 10px;
-           }
-           .subscription-section p {
-               font-size: 14px;
-               margin-bottom: 10px;
-           }
-           .subscription-section .form-group {
-               display: flex;
-               flex-direction: column;
-               gap: 10px;
-               margin-bottom: 10px;
-           }
-           .subscription-section input {
-               padding: 8px;
-               border: none;
-               border-radius: 5px;
-               width: 100%;
-               font-size: 14px;
-           }
-           .subscription-section .checkbox-label {
-               font-size: 10px;
-               display: block;
-               margin-top: 5px;
-           }
-           .subscription-section .btn-subscribe {
-               background: #ffaa00;
-               color: #fff;
-               padding: 8px 16px;
-               border: none;
-               border-radius: 5px;
-               font-weight: 600;
-               cursor: pointer;
-               font-size: 14px;
-           }
-           .subscription-section .btn-subscribe:hover {
-               background: #cc8800;
-           }
-           /* Mobile App Section Styling */
-           .mobile-app-section {
-               position: relative;
-               width: 100%;
-               height: 300px;
-               background: url('https://static.app/sites/phnt9wd0ul/files?path=/public/cover.jpg') no-repeat center center;
-               background-size: cover;
-               margin: 0 auto;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               color: #fff;
-           }
-           .mobile-app-section .info-box {
-               background: rgba(0, 0, 0, 0.7);
-               padding: 15px;
-               border-radius: 5px;
-               text-align: center;
-               max-width: 100%;
-               margin: 0;
-           }
-           .mobile-app-section .info-box h2 {
-               color: #0066cc;
-               font-size: 18px;
-               margin-bottom: 10px;
-           }
-           .mobile-app-section .info-box p {
-               font-size: 12px;
-               margin-bottom: 10px;
-           }
-           .mobile-app-section .info-box a {
-               color: #fff;
-               text-decoration: none;
-               font-weight: 600;
-               font-size: 12px;
-           }
-           .mobile-app-section .info-box a:hover {
-               text-decoration: underline;
-           }
-           .mobile-app-section .app-content {
-               display: flex;
-               flex-direction: column;
-               align-items: center;
-           }
-           .mobile-app-section .app-screenshot {
-               width: 100px;
-               height: auto;
-               margin: 10px 0;
-           }
-           /* Footer Navigation Section Styling */
-           .footer-nav {
-               background: #f0f4f8;
-               padding: 15px 0;
-               border-top: 1px solid #e0e0e0;
-               margin-top: auto;
-           }
-           .footer-nav .container {
-               display: flex;
-               flex-direction: column;
-               align-items: center;
-               max-width: 1200px;
-               margin: 0 auto;
-               padding: 0 15px;
-           }
-           .footer-nav .nav-column {
-               width: 100%;
-               margin-bottom: 20px;
-           }
-           .footer-nav .nav-column h5 {
-               font-size: 14px;
-               font-weight: 600;
-               color: #333;
-               margin-bottom: 10px;
-               text-align: left;
-           }
-           .footer-nav .nav-column ul {
-               list-style: none;
-               padding: 0;
-               text-align: left;
-           }
-           .footer-nav .nav-column ul li {
-               margin-bottom: 5px;
-           }
-           .footer-nav .nav-column ul li a {
-               color: #666;
-               text-decoration: none;
-               font-size: 12px;
-           }
-           .footer-nav .nav-column ul li a:hover {
-               color: #0066cc;
-           }
-           .footer-nav .social-media {
-               display: flex;
-               gap: 10px;
-               justify-content: center;
-           }
-           .footer-nav .social-media a {
-               color: #666;
-               font-size: 16px;
-           }
-           .footer-nav .social-media a:hover {
-               color: #0066cc;
-           }
-           @media (min-width: 768px) {
-               .hero-section {
-                   min-height: 500px;
-               }
-               .hero-content {
-                   max-width: 600px;
-               }
-               .hero-badge {
-                   font-size: 1rem;
-                   padding: 12px 24px;
-               }
-               .hero-title {
-                   font-size: 24px;
-                   padding: 10px 20px;
-               }
-               .hero-logo {
-                   max-width: 150px;
-               }
-               .action-button {
-                   font-size: 16px;
-                   padding: 10px 20px;
-               }
-               .booking-container {
-                   flex-direction: row;
-                   align-items: flex-start;
-               }
-               .carousel-container {
-                   flex: 1;
-                   margin: 0 10px;
-               }
-               .carousel-container img {
-                   height: 300px;
-               }
-               .booking-section {
-                   flex: 2;
-                   height: 300px;
-                   margin: 20px 10px;
-               }
-               .booking-section label {
-                   font-size: 16px;
-               }
-               .booking-section select, .booking-section input {
-                   font-size: 16px;
-               }
-               .booking-section .btn-primary {
-                   font-size: 16px;
-               }
-               .trip-planning h2 {
-                   font-size: 1.5rem;
-               }
-               .trip-planning p {
-                   font-size: 1rem;
-               }
-               .management-grid {
-                   grid-template-columns: repeat(2, 1fr);
-                   max-width: 1200px;
-               }
-               .management-card img {
-                   height: 400px;
-               }
-               .management-card h3 {
-                   font-size: 20px;
-               }
-               .management-card p {
-                   font-size: 14px;
-               }
-               .subscription-section {
-                   padding: 40px 20px;
-                   max-width: 1200px;
-               }
-               .subscription-section h2 {
-                   font-size: 24px;
-               }
-               .subscription-section p {
-                   font-size: 16px;
-               }
-               .subscription-section .form-group {
-                   flex-direction: row;
-               }
-               .subscription-section input {
-                   width: 200px;
-               }
-               .subscription-section .btn-subscribe {
-                   font-size: 16px;
-                   padding: 10px 20px;
-               }
-               .mobile-app-section {
-                   height: 400px;
-               }
-               .mobile-app-section .info-box {
-                   max-width: 300px;
-                   text-align: left;
-               }
-               .mobile-app-section .info-box h2 {
-                   font-size: 1.5rem;
-               }
-               .mobile-app-section .info-box p {
-                   font-size: 0.9rem;
-               }
-               .mobile-app-section .info-box a {
-                   font-size: 14px;
-               }
-               .mobile-app-section .app-content {
-                   flex-direction: row;
-               }
-               .mobile-app-section .app-screenshot {
-                   width: 150px;
-               }
-               .footer-nav .container {
-                   flex-direction: row;
-                   align-items: flex-start;
-               }
-               .footer-nav .nav-column {
-                   margin-right: 20px;
-                   margin-bottom: 0;
-               }
-               .footer-nav .nav-column h5 {
-                   text-align: left;
-               }
-               .footer-nav .nav-column ul {
-                   text-align: left;
-               }
-           }
-       </style>
-   </head>
-   <body>
-       <!-- Navigation -->
-       <nav class="navbar navbar-expand-lg">
-           <div class="container">
-               <a class="navbar-brand" href="#home">
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Azwel_logo.png" alt="Azwel Travel Agency Logo">
-               </a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                   <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarNav">
-                   <ul class="navbar-nav ms-auto">
-                       <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                       <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                       <li class="nav-item"><a class="nav-link" href="#booking">Book Now</a></li>
-                       <li class="nav-item"><a class="nav-link" href="#management">Management</a></li>
-                       <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
-                   </ul>
-               </div>
-           </div>
-       </nav>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azwel Travel Agency - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5e8c7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background: #ff6200;
+            padding: 15px 0;
+        }
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+        .nav-link {
+            color: #fff !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #b3d7ff !important;
+        }
+        .section {
+            padding: 30px 15px;
+            text-align: center;
+            display: none;
+            flex: 1 0 auto;
+        }
+        .section.active {
+            display: block !important;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        /* Hero Section Styling */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 300px;
+            background: url('A1.jpg') no-repeat center center; /* Use a local image as background */
+            background-size: cover;
+            color: #fff;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 98, 0, 0.6);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            padding: 20px;
+        }
+        .hero-badge {
+            background: #0066cc;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .hero-title {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 8px 16px;
+            margin-left: -16px;
+            display: inline-block;
+            font-size: 20px;
+        }
+        .hero-logo {
+            position: relative;
+            display: block;
+            max-width: 100px;
+            height: auto;
+            margin: 10px 0 10px 10px;
+            z-index: 2;
+        }
+        .action-button {
+            background: #ffaa00;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .action-button:hover {
+            background: #cc8800;
+        }
+        /* Booking Section with Carousels Styling */
+        .booking-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        .carousel-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .carousel-container img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .booking-section {
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin: 10px 0;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .booking-section .form-group {
+            margin-bottom: 10px;
+        }
+        .booking-section label {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        .booking-section select, .booking-section input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .booking-section .btn-primary {
+            background: #ffaa00;
+            border-color: #ffaa00;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+        .booking-section .btn-primary:hover {
+            background: #cc8800;
+            border-color: #cc8800;
+        }
+        .trip-planning {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .trip-planning h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .trip-planning p {
+            color: #666;
+            font-size: 14px;
+        }
+        #gallery .gallery-grid, #contacts .map-container {
+            /* Existing styles remain unchanged */
+        }
+        .management-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .management-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+        .management-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+        }
+        .management-card h3 {
+            margin: 10px 0;
+            color: #0066cc;
+            font-size: 18px;
+        }
+        .management-card p {
+            font-size: 12px;
+            color: #666;
+        }
+        footer {
+            background: #0066cc;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            margin-top: auto;
+        }
+        footer p {
+            margin: 0;
+            font-size: 10px;
+        }
+        /* Subscription Section Styling */
+        .subscription-section {
+            background: #000;
+            color: #fff;
+            padding: 20px 15px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        .subscription-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .subscription-section p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .subscription-section .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .subscription-section input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 14px;
+        }
+        .subscription-section .checkbox-label {
+            font-size: 10px;
+            display: block;
+            margin-top: 5px;
+        }
+        .subscription-section .btn-subscribe {
+            background: #ffaa00;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .subscription-section .btn-subscribe:hover {
+            background: #cc8800;
+        }
+        /* Mobile App Section Styling */
+        .mobile-app-section {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: url('A1.jpg') no-repeat center center; /* Use a local image as background */
+            background-size: cover;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .mobile-app-section .info-box {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 100%;
+            margin: 0;
+        }
+        .mobile-app-section .info-box h2 {
+            color: #0066cc;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .mobile-app-section .info-box p {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .mobile-app-section .info-box a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .mobile-app-section .info-box a:hover {
+            text-decoration: underline;
+        }
+        .mobile-app-section .app-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mobile-app-section .app-screenshot {
+            width: 100px;
+            height: auto;
+            margin: 10px 0;
+        }
+        /* Footer Navigation Section Styling */
+        .footer-nav {
+            background: #f0f4f8;
+            padding: 15px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: auto;
+        }
+        .footer-nav .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .footer-nav .nav-column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .footer-nav .nav-column h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .footer-nav .nav-column ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .footer-nav .nav-column ul li {
+            margin-bottom: 5px;
+        }
+        .footer-nav .nav-column ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .footer-nav .nav-column ul li a:hover {
+            color: #0066cc;
+        }
+        .footer-nav .social-media {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .footer-nav .social-media a {
+            color: #666;
+            font-size: 16px;
+        }
+        .footer-nav .social-media a:hover {
+            color: #0066cc;
+        }
+        @media (min-width: 768px) {
+            .hero-section {
+                min-height: 500px;
+            }
+            .hero-content {
+                max-width: 600px;
+            }
+            .hero-badge {
+                font-size: 1rem;
+                padding: 12px 24px;
+            }
+            .hero-title {
+                font-size: 24px;
+                padding: 10px 20px;
+            }
+            .hero-logo {
+                max-width: 150px;
+            }
+            .action-button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            .booking-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .carousel-container {
+                flex: 1;
+                margin: 0 10px;
+            }
+            .carousel-container img {
+                height: 300px;
+            }
+            .booking-section {
+                flex: 2;
+                height: 300px;
+                margin: 20px 10px;
+            }
+            .booking-section label {
+                font-size: 16px;
+            }
+            .booking-section select, .booking-section input {
+                font-size: 16px;
+            }
+            .booking-section .btn-primary {
+                font-size: 16px;
+            }
+            .trip-planning h2 {
+                font-size: 1.5rem;
+            }
+            .trip-planning p {
+                font-size: 1rem;
+            }
+            .management-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 1200px;
+            }
+            .management-card img {
+                height: 400px;
+            }
+            .management-card h3 {
+                font-size: 20px;
+            }
+            .management-card p {
+                font-size: 14px;
+            }
+            .subscription-section {
+                padding: 40px 20px;
+                max-width: 1200px;
+            }
+            .subscription-section h2 {
+                font-size: 24px;
+            }
+            .subscription-section p {
+                font-size: 16px;
+            }
+            .subscription-section .form-group {
+                flex-direction: row;
+            }
+            .subscription-section input {
+                width: 200px;
+            }
+            .subscription-section .btn-subscribe {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            .mobile-app-section {
+                height: 400px;
+            }
+            .mobile-app-section .info-box {
+                max-width: 300px;
+                text-align: left;
+            }
+            .mobile-app-section .info-box h2 {
+                font-size: 1.5rem;
+            }
+            .mobile-app-section .info-box p {
+                font-size: 0.9rem;
+            }
+            .mobile-app-section .info-box a {
+                font-size: 14px;
+            }
+            .mobile-app-section .app-content {
+                flex-direction: row;
+            }
+            .mobile-app-section .app-screenshot {
+                width: 150px;
+            }
+            .footer-nav .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .footer-nav .nav-column {
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+            .footer-nav .nav-column h5 {
+                text-align: left;
+            }
+            .footer-nav .nav-column ul {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="Azwel_logo.png" alt="Azwel Travel Agency Logo"> <!-- Adjust if filename differs -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#booking">Book Now</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#management">Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-       <!-- Home Section -->
-       <div id="home" class="section active">
-           <!-- Hero Section -->
-           <div class="hero-section">
-               <div class="hero-overlay"></div>
-               <div class="hero-content">
-                   <div class="hero-badge">Travel Agency of the Year 2025</div>
-                   <h1 class="hero-title">Welcome to Azwel Travel Agency</h1>
-                   <p>Explore the world with us! Celebrate our excellence in travel services.</p>
-                   <a href="#booking" class="action-button">Save up to 10%</a>
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Azwel_logo.png" alt="Azwel Travel Agency Logo" class="hero-logo">
-               </div>
-           </div>
-           <!-- Booking Section with Carousels -->
-           <div class="booking-container">
-               <div class="carousel-container">
-                   <div id="leftCarousel" class="carousel slide" data-bs-ride="carousel">
-                       <div class="carousel-inner">
-                           <div class="carousel-item active">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/A1.jpg" class="d-block" alt="Left Image A1">
-                           </div>
-                           <div class="carousel-item">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/A2.jpg" class="d-block" alt="Left Image A2">
-                           </div>
-                           <div class="carousel-item">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/A3.jpg" class="d-block" alt="Left Image A3">
-                           </div>
-                       </div>
-                       <button class="carousel-control-prev" type="button" data-bs-target="#leftCarousel" data-bs-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Previous</span>
-                       </button>
-                       <button class="carousel-control-next" type="button" data-bs-target="#leftCarousel" data-bs-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Next</span>
-                       </button>
-                   </div>
-               </div>
-               <div class="booking-section">
-                   <div class="row g-3">
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label>Trip Type</label>
-                               <select class="form-control">
-                                   <option>Return</option>
-                                   <option>One way</option>
-                                   <option>Multi-city</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label>From</label>
-                               <input type="text" class="form-control" placeholder="Enter origin">
-                           </div>
-                       </div>
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label>To</label>
-                               <input type="text" class="form-control" placeholder="Enter destination">
-                           </div>
-                       </div>
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label>Depart - Return</label>
-                               <input type="date" class="form-control" value="2025-06-19">
-                               <input type="date" class="form-control mt-2" value="2025-06-26">
-                           </div>
-                       </div>
-                   </div>
-                   <div class="row g-3 mt-3">
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label>Passengers / Class</label>
-                               <select class="form-control">
-                                   <option>1 Passenger / Economy</option>
-                                   <option>2 Passengers / Business</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-12 col-md-3">
-                           <div class="form-group">
-                               <label> </label>
-                               <button class="btn btn-primary w-100">Search Trips</button>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="carousel-container">
-                   <div id="rightCarousel" class="carousel slide" data-bs-ride="carousel">
-                       <div class="carousel-inner">
-                           <div class="carousel-item active">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/B1.jpg" class="d-block" alt="Right Image B1">
-                           </div>
-                           <div class="carousel-item">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/B2.jpg" class="d-block" alt="Right Image B2">
-                           </div>
-                           <div class="carousel-item">
-                               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/B3.jpg" class="d-block" alt="Right Image B3">
-                           </div>
-                       </div>
-                       <button class="carousel-control-prev" type="button" data-bs-target="#rightCarousel" data-bs-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Previous</span>
-                       </button>
-                       <button class="carousel-control-next" type="button" data-bs-target="#rightCarousel" data-bs-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Next</span>
-                       </button>
-                   </div>
-               </div>
-           </div>
-           <!-- Trip Planning Section -->
-           <div class="trip-planning">
-               <h2>Start planning your next trip</h2>
-               <p>Thinking of travelling somewhere soon? Here are some options to help you get started.</p>
-           </div>
-       </div>
+    <!-- Home Section -->
+    <div id="home" class="section active">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-badge">Travel Agency of the Year 2025</div>
+                <h1 class="hero-title">Welcome to Azwel Travel Agency</h1>
+                <p>Explore the world with us! Celebrate our excellence in travel services.</p>
+                <a href="#booking" class="action-button">Save up to 10%</a>
+                <img src="Azwel_logo.png" alt="Azwel Travel Agency Logo" class="hero-logo"> <!-- Adjust if filename differs -->
+            </div>
+        </div>
+        <!-- Booking Section with Carousels -->
+        <div class="booking-container">
+            <div class="carousel-container">
+                <div id="leftCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="A1.jpg" class="d-block" alt="Left Image A1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="A2.jpg" class="d-block" alt="Left Image A2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="A3.jpg" class="d-block" alt="Left Image A3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#leftCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#leftCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="booking-section">
+                <div class="row g-3">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Trip Type</label>
+                            <select class="form-control">
+                                <option>Return</option>
+                                <option>One way</option>
+                                <option>Multi-city</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="text" class="form-control" placeholder="Enter origin">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="text" class="form-control" placeholder="Enter destination">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Depart - Return</label>
+                            <input type="date" class="form-control" value="2025-06-19">
+                            <input type="date" class="form-control mt-2" value="2025-06-26">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label>Passengers / Class</label>
+                            <select class="form-control">
+                                <option>1 Passenger / Economy</option>
+                                <option>2 Passengers / Business</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="form-group">
+                            <label> </label>
+                            <button class="btn btn-primary w-100">Search Trips</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <div id="rightCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="B1.jpg" class="d-block" alt="Right Image B1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="B2.jpg" class="d-block" alt="Right Image B2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="B3.jpg" class="d-block" alt="Right Image B3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#rightCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#rightCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Trip Planning Section -->
+        <div class="trip-planning">
+            <h2>Start planning your next trip</h2>
+            <p>Thinking of travelling somewhere soon? Here are some options to help you get started.</p>
+        </div>
+    </div>
 
-       <!-- Gallery Section -->
-       <div id="gallery" class="section">
-           <h1>Travel Gallery</h1>
-           <p>Discover some of our stunning destinations.</p>
-           <div id="carouselGallery" class="carousel slide" data-bs-ride="carousel">
-               <div class="carousel-inner">
-                   <div class="carousel-item active">
-                       <img src="https://via.placeholder.com/300x200?text=Tropical+Island" alt="Tropical Island">
-                   </div>
-                   <div class="carousel-item">
-                       <img src="https://via.placeholder.com/300x200?text=City+Skyline" alt="City Skyline">
-                   </div>
-                   <div class="carousel-item">
-                       <img src="https://via.placeholder.com/300x200?text=Mountain+Peak" alt="Mountain Peak">
-                   </div>
-                   <div class="carousel-item">
-                       <img src="https://via.placeholder.com/300x200?text=Desert+Safari" alt="Desert Safari">
-                   </div>
-               </div>
-               <button class="carousel-control-prev" type="button" data-bs-target="#carouselGallery" data-bs-slide="prev">
-                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                   <span class="visually-hidden">Previous</span>
-               </button>
-               <button class="carousel-control-next" type="button" data-bs-target="#carouselGallery" data-bs-slide="next">
-                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                   <span class="visually-hidden">Next</span>
-               </button>
-           </div>
-           <div class="upload-section">
-               <input type="file" id="imageUpload" accept="image/*">
-               <button onclick="uploadImage()">Upload Image</button>
-           </div>
-       </div>
+    <!-- Gallery Section -->
+    <div id="gallery" class="section">
+        <h1>Travel Gallery</h1>
+        <p>Discover some of our stunning destinations.</p>
+        <div id="carouselGallery" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="A1.jpg" alt="Tropical Island">
+                </div>
+                <div class="carousel-item">
+                    <img src="A2.jpg" alt="City Skyline">
+                </div>
+                <div class="carousel-item">
+                    <img src="A3.jpg" alt="Mountain Peak">
+                </div>
+                <div class="carousel-item">
+                    <img src="B1.jpg" alt="Desert Safari">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselGallery" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselGallery" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="upload-section">
+            <input type="file" id="imageUpload" accept="image/*">
+            <button onclick="uploadImage()">Upload Image</button>
+        </div>
+    </div>
 
-       <!-- Booking Section -->
-       <div id="booking" class="section">
-           <h1>Book Your Trip</h1>
-           <p>Plan your next adventure with our easy online booking system.</p>
-           <form id="bookingForm">
-               <div class="mb-3">
-                   <label for="destination" class="form-label">Destination</label>
-                   <input type="text" class="form-control" id="destination" placeholder="Enter destination" required>
-               </div>
-               <div class="mb-3">
-                   <label for="checkin" class="form-label">Check-in Date</label>
-                   <input type="date" class="form-control" id="checkin" required>
-               </div>
-               <div class="mb-3">
-                   <label for="checkout" class="form-label">Check-out Date</label>
-                   <input type="date" class="form-control" id="checkout" required>
-               </div>
-               <div class="mb-3">
-                   <label for="guests" class="form-label">Number of Guests</label>
-                   <input type="number" class="form-control" id="guests" min="1" placeholder="Enter number of guests" required>
-               </div>
-               <button type="submit" class="btn btn-primary">Submit Booking</button>
-           </form>
-           <div id="paymentResponse"></div>
-       </div>
+    <!-- Booking Section -->
+    <div id="booking" class="section">
+        <h1>Book Your Trip</h1>
+        <p>Plan your next adventure with our easy online booking system.</p>
+        <form id="bookingForm">
+            <div class="mb-3">
+                <label for="destination" class="form-label">Destination</label>
+                <input type="text" class="form-control" id="destination" placeholder="Enter destination" required>
+            </div>
+            <div class="mb-3">
+                <label for="checkin" class="form-label">Check-in Date</label>
+                <input type="date" class="form-control" id="checkin" required>
+            </div>
+            <div class="mb-3">
+                <label for="checkout" class="form-label">Check-out Date</label>
+                <input type="date" class="form-control" id="checkout" required>
+            </div>
+            <div class="mb-3">
+                <label for="guests" class="form-label">Number of Guests</label>
+                <input type="number" class="form-control" id="guests" min="1" placeholder="Enter number of guests" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
+        </form>
+        <div id="paymentResponse"></div>
+    </div>
 
-       <!-- Management Section -->
-       <div id="management" class="section">
-           <h1>Our Management Team</h1>
-           <p>Meet the dedicated leaders behind Azwel Travel Agency.</p>
-           <div class="management-grid">
-               <div class="management-card">
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Azemahle.jpg" alt="Azemahle Sambata" onerror="this.src='https://via.placeholder.com/400x400?text=Azemahle+Sambata'; this.onerror=null;">
-                   <h3>Miss Azemahle Sambata</h3>
-                   <p><strong>Director & CEO</strong><br>With extensive marketing experience, Azemahle leads Azwel with a vision for innovative travel solutions.</p>
-               </div>
-               <div class="management-card">
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Joseph.jpg" alt="Joseph Mayisa" onerror="this.src='https://via.placeholder.com/400x400?text=Joseph+Mayisa'; this.onerror=null;">
-                   <h3>Mr Joseph Mayisa</h3>
-                   <p><strong>Marketing Director</strong><br>Based in the UK, Joseph drives Azwel's global marketing strategies to promote our unique travel offerings.</p>
-               </div>
-               <div class="management-card">
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Zwelihle.jpg" alt="Zwelihle Mathe" onerror="this.src='https://via.placeholder.com/400x400?text=Zwelihle+Mathe'; this.onerror=null;">
-                   <h3>Mr Zwelihle Mathe</h3>
-                   <p><strong>Finance & Operations Director</strong><br>Zwelihle manages financial strategies and operations, ensuring Azwel's growth and efficiency.</p>
-               </div>
-               <div class="management-card">
-                   <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/Wellington.jpg" alt="Wellington Mupezeni" onerror="this.src='https://via.placeholder.com/400x400?text=Wellington+Mupezeni'; this.onerror=null;">
-                   <h3>Mr Wellington Mupezeni</h3>
-                   <p><strong>Logistics Director</strong><br>Wellington oversees logistics, ensuring seamless travel planning and execution for your clients.</p>
-               </div>
-           </div>
-       </div>
+    <!-- Management Section -->
+    <div id="management" class="section">
+        <h1>Our Management Team</h1>
+        <p>Meet the dedicated leaders behind Azwel Travel Agency.</p>
+        <div class="management-grid">
+            <div class="management-card">
+                <img src="Azemahle.jpg" alt="Azemahle Sambata" onerror="this.src='https://via.placeholder.com/400x400?text=Azemahle+Sambata'; this.onerror=null;">
+                <h3>Miss Azemahle Sambata</h3>
+                <p><strong>Director & CEO</strong><br>With extensive marketing experience, Azemahle leads Azwel with a vision for innovative travel solutions.</p>
+            </div>
+            <div class="management-card">
+                <img src="Joseph.jpg" alt="Joseph Mayisa" onerror="this.src='https://via.placeholder.com/400x400?text=Joseph+Mayisa'; this.onerror=null;">
+                <h3>Mr Joseph Mayisa</h3>
+                <p><strong>Marketing Director</strong><br>Based in the UK, Joseph drives Azwel's global marketing strategies to promote our unique travel offerings.</p>
+            </div>
+            <div class="management-card">
+                <img src="Zwelihle.jpg" alt="Zwelihle Mathe" onerror="this.src='https://via.placeholder.com/400x400?text=Zwelihle+Mathe'; this.onerror=null;">
+                <h3>Mr Zwelihle Mathe</h3>
+                <p><strong>Finance & Operations Director</strong><br>Zwelihle manages financial strategies and operations, ensuring Azwel's growth and efficiency.</p>
+            </div>
+            <div class="management-card">
+                <img src="Wellington.jpg" alt="Wellington Mupezeni" onerror="this.src='https://via.placeholder.com/400x400?text=Wellington+Mupezeni'; this.onerror=null;">
+                <h3>Mr Wellington Mupezeni</h3>
+                <p><strong>Logistics Director</strong><br>Wellington oversees logistics, ensuring seamless travel planning and execution for your clients.</p>
+            </div>
+        </div>
+    </div>
 
-       <!-- Contacts Section -->
-       <div id="contacts" class="section">
-           <h1>Contact Us</h1>
-           <p>We're here to assist you with your travel needs.</p>
-           <p><strong>Company Name:</strong> Azwel Travel Agency (PTY) LTD</p>
-           <p><strong>Email:</strong> info@azweltravel.co.za</p>
-           <p><strong>Phone:</strong> +27 123 456-7890</p>
-           <p><strong>Address:</strong> 17 Inverary Street, East London, South Africa</p>
-           <div class="map-container">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5!2d27.9123!3d-33.0153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAwJzU0LjciUyAyN8KwNTQnNDMuNiJF!5e0!3m2!1sen!2sza!4v1701001234567" width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-           </div>
-       </div>
+    <!-- Contacts Section -->
+    <div id="contacts" class="section">
+        <h1>Contact Us</h1>
+        <p>We're here to assist you with your travel needs.</p>
+        <p><strong>Company Name:</strong> Azwel Travel Agency (PTY) LTD</p>
+        <p><strong>Email:</strong> info@azweltravel.co.za</p>
+        <p><strong>Phone:</strong> +27 123 456-7890</p>
+        <p><strong>Address:</strong> 17 Inverary Street, East London, South Africa</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5!2d27.9123!3d-33.0153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDAwJzU0LjciUyAyN8KwNTQnNDMuNiJF!5e0!3m2!1sen!2sza!4v1701001234567" width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
 
-       <!-- Mobile App Section -->
-       <div class="mobile-app-section">
-           <div class="app-content">
-               <div class="info-box">
-                   <h2>Get more on our mobile app</h2>
-                   <p>Benefit from app-exclusive offers, personalised notifications, seamless booking functions, journey tracking and more.</p>
-                   <a href="#">Learn more</a>
-               </div>
-               <img src="https://static.app/sites/phnt9wd0ul/files?path=/public/app_screenshot.png" alt="Azwel App Screenshot" class="app-screenshot">
-           </div>
-       </div>
+    <!-- Mobile App Section -->
+    <div class="mobile-app-section">
+        <div class="app-content">
+            <div class="info-box">
+                <h2>Get more on our mobile app</h2>
+                <p>Benefit from app-exclusive offers, personalised notifications, seamless booking functions, journey tracking and more.</p>
+                <a href="#">Learn more</a>
+            </div>
+            <img src="app_screenshot.png" alt="Azwel App Screenshot" class="app-screenshot"> <!-- Adjust if filename differs -->
+        </div>
+    </div>
 
-       <!-- Subscription Section -->
-       <div class="subscription-section">
-           <h2>Never miss an offer</h2>
-           <p>Subscribe and be the first to receive our exclusive offers.</p>
-           <div class="form-group">
-               <input type="email" placeholder="Email address" required>
-               <input type="text" placeholder="Preferred city of departure">
-               <button class="btn-subscribe">Subscribe</button>
-           </div>
-           <label class="checkbox-label">
-               <input type="checkbox" required> I would like to get offers and news from Azwel Travel Agency. I have read and understand the privacy notice.
-           </label>
-       </div>
+    <!-- Subscription Section -->
+    <div class="subscription-section">
+        <h2>Never miss an offer</h2>
+        <p>Subscribe and be the first to receive our exclusive offers.</p>
+        <div class="form-group">
+            <input type="email" placeholder="Email address" required>
+            <input type="text" placeholder="Preferred city of departure">
+            <button class="btn-subscribe">Subscribe</button>
+        </div>
+        <label class="checkbox-label">
+            <input type="checkbox" required> I would like to get offers and news from Azwel Travel Agency. I have read and understand the privacy notice.
+        </label>
+    </div>
 
-       <!-- Footer Navigation Section -->
-       <div class="footer-nav">
-           <div class="container">
-               <div class="nav-column">
-                   <h5>Azwel Travel</h5>
-                   <ul>
-                       <li><a href="#">About us</a></li>
-                       <li><a href="#">Careers</a></li>
-                       <li><a href="#">Press releases</a></li>
-                       <li><a href="#">Sponsorship</a></li>
-                       <li><a href="#">Al Dabb Qatarisation</a></li>
-                       <li><a href="#">Annual reports</a></li>
-                       <li><a href="#">Environmental sustainability</a></li>
-                   </ul>
-               </div>
-               <div class="nav-column">
-                   <h5>Group Companies</h5>
-                   <ul>
-                       <li><a href="#">Hamad International Airport</a></li>
-                       <li><a href="#">Qatar Executive</a></li>
-                       <li><a href="#">Qatar Duty Free</a></li>
-                       <li><a href="#">Qatar Airways Cargo</a></li>
-                       <li><a href="#">Internal Media Services</a></li>
-                       <li><a href="#">Design Organisation</a></li>
-                       <li><a href="#">Group companies</a></li>
-                   </ul>
-               </div>
-               <div class="nav-column">
-                   <h5>Business Solutions</h5>
-                   <ul>
-                       <li><a href="#">Corporate travel</a></li>
-                       <li><a href="#">Beyond Business</a></li>
-                       <li><a href="#">QMICE meetings and events</a></li>
-                       <li><a href="#">Advertise with us</a></li>
-                   </ul>
-               </div>
-               <div class="nav-column">
-                   <h5>Business Partners</h5>
-                   <ul>
-                       <li><a href="#">Affiliate marketing</a></li>
-                       <li><a href="#">e-Procurement and Supplier Registration</a></li>
-                       <li><a href="#">Trade partners</a></li>
-                   </ul>
-               </div>
-               <div class="nav-column">
-                   <h5>Help</h5>
-                   <ul>
-                       <li><a href="#">Contact us</a></li>
-                       <li><a href="#">Browse FAQs</a></li>
-                       <li><a href="#">Travel alerts</a></li>
-                   </ul>
-               </div>
-               <div class="nav-column social-media">
-                   <h5>Let's stay connected</h5>
-                   <div>
-                       <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                       <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                       <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                       <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                   </div>
-               </div>
-           </div>
-       </div>
+    <!-- Footer Navigation Section -->
+    <div class="footer-nav">
+        <div class="container">
+            <div class="nav-column">
+                <h5>Azwel Travel</h5>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press releases</a></li>
+                    <li><a href="#">Sponsorship</a></li>
+                    <li><a href="#">Al Dabb Qatarisation</a></li>
+                    <li><a href="#">Annual reports</a></li>
+                    <li><a href="#">Environmental sustainability</a></li>
+                </ul>
+            </div>
+            <div class="nav-column">
+                <h5>Group Companies</h5>
+                <ul>
+                    <li><a href="#">Hamad International Airport</a></li>
+                    <li><a href="#">Qatar Executive</a></li>
+                    <li><a href="#">Qatar Duty Free</a></li>
+                    <li><a href="#">Qatar Airways Cargo</a></li>
+                    <li><a href="#">Internal Media Services</a></li>
+                    <li><a href="#">Design Organisation</a></li>
+                    <li><a href="#">Group companies</a></li>
+                </ul>
+            </div>
+            <div class="nav-column">
+                <h5>Business Solutions</h5>
+                <ul>
+                    <li><a href="#">Corporate travel</a></li>
+                    <li><a href="#">Beyond Business</a></li>
+                    <li><a href="#">QMICE meetings and events</a></li>
+                    <li><a href="#">Advertise with us</a></li>
+                </ul>
+            </div>
+            <div class="nav-column">
+                <h5>Business Partners</h5>
+                <ul>
+                    <li><a href="#">Affiliate marketing</a></li>
+                    <li><a href="#">e-Procurement and Supplier Registration</a></li>
+                    <li><a href="#">Trade partners</a></li>
+                </ul>
+            </div>
+            <div class="nav-column">
+                <h5>Help</h5>
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Browse FAQs</a></li>
+                    <li><a href="#">Travel alerts</a></li>
+                </ul>
+            </div>
+            <div class="nav-column social-media">
+                <h5>Let's stay connected</h5>
+                <div>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-       <!-- Footer Section -->
-       <footer>
-           <p>© Azwel Travel Agency (PTY) LTD 2025. All rights reserved.<br>Contact: info@azweltravel.co.za | +27 123 456-7890 | 17 Inverary Street, East London, South Africa</p>
-       </footer>
+    <!-- Footer Section -->
+    <footer>
+        <p>© Azwel Travel Agency (PTY) LTD 2025. All rights reserved.<br>Contact: info@azweltravel.co.za | +27 123 456-7890 | 17 Inverary Street, East London, South Africa</p>
+    </footer>
 
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-       <script>
-           document.addEventListener('DOMContentLoaded', function() {
-               const navLinks = document.querySelectorAll('.nav-link');
-               const sections = document.querySelectorAll('.section');
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
 
-               function showSection(sectionId) {
-                   sections.forEach(section => {
-                       section.classList.remove('active');
-                       section.style.display = 'none';
-                   });
-                   const targetSection = document.getElementById(sectionId);
-                   if (targetSection) {
-                       targetSection.classList.add('active');
-                       targetSection.style.display = 'block';
-                       navLinks.forEach(link => {
-                           link.classList.remove('active');
-                           if (link.getAttribute('href') === `#${sectionId}`) {
-                               link.classList.add('active');
-                           }
-                       });
-                       if (sectionId === 'home' && document.getElementById('carouselHome')) {
-                           new bootstrap.Carousel(document.getElementById('carouselHome'), {
-                               interval: 5000,
-                               ride: 'carousel'
-                           });
-                       } else if (sectionId === 'gallery' && document.getElementById('carouselGallery')) {
-                           new bootstrap.Carousel(document.getElementById('carouselGallery'), {
-                               interval: 5000,
-                               ride: 'carousel'
-                           });
-                       }
-                   }
-               }
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    section.style.display = 'none';
+                });
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    targetSection.style.display = 'block';
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                    if (sectionId === 'home' && document.getElementById('carouselHome')) {
+                        new bootstrap.Carousel(document.getElementById('carouselHome'), {
+                            interval: 5000,
+                            ride: 'carousel'
+                        });
+                    } else if (sectionId === 'gallery' && document.getElementById('carouselGallery')) {
+                        new bootstrap.Carousel(document.getElementById('carouselGallery'), {
+                            interval: 5000,
+                            ride: 'carousel'
+                        });
+                    }
+                }
+            }
 
-               function handleHashChange() {
-                   let hash = window.location.hash.substring(1) || 'home';
-                   showSection(hash);
-               }
+            function handleHashChange() {
+                let hash = window.location.hash.substring(1) || 'home';
+                showSection(hash);
+            }
 
-               handleHashChange();
-               window.addEventListener('hashchange', handleHashChange);
+            handleHashChange();
+            window.addEventListener('hashchange', handleHashChange);
 
-               navLinks.forEach(link => {
-                   link.addEventListener('click', function(e) {
-                       e.preventDefault();
-                       const targetId = this.getAttribute('href').substring(1);
-                       window.location.hash = targetId;
-                       showSection(targetId);
-                       window.scrollTo({ top: document.getElementById(targetId).offsetTop, behavior: 'smooth' });
-                   });
-               });
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    window.location.hash = targetId;
+                    showSection(targetId);
+                    window.scrollTo({ top: document.getElementById(targetId).offsetTop, behavior: 'smooth' });
+                });
+            });
 
-               document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-                   e.preventDefault();
-                   const destination = document.getElementById('destination').value;
-                   const checkin = document.getElementById('checkin').value;
-                   const checkout = document.getElementById('checkout').value;
-                   const guests = document.getElementById('guests').value;
+            document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const destination = document.getElementById('destination').value;
+                const checkin = document.getElementById('checkin').value;
+                const checkout = document.getElementById('checkout').value;
+                const guests = document.getElementById('guests').value;
 
-                   if (!destination || !checkin || !checkout || !guests) {
-                       alert('Please fill all fields.');
-                       return;
-                   }
+                if (!destination || !checkin || !checkout || !guests) {
+                    alert('Please fill all fields.');
+                    return;
+                }
 
-                   const response = await fetch('http://localhost:3000/api/payment', {
-                       method: 'POST',
-                       headers: { 'Content-Type': 'application/json' },
-                       body: JSON.stringify({ destination, checkin, checkout, guests, amount: 100.00 })
-                   });
+                const response = await fetch('http://localhost:3000/api/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ destination, checkin, checkout, guests, amount: 100.00 })
+                });
 
-                   const result = await response.json();
-                   document.getElementById('paymentResponse').innerText = result.message;
-               });
+                const result = await response.json();
+                document.getElementById('paymentResponse').innerText = result.message;
+            });
 
-               window.uploadImage = async function() {
-                   const fileInput = document.getElementById('imageUpload');
-                   const file = fileInput.files[0];
-                   if (!file) {
-                       alert('Please select an image.');
-                       return;
-                   }
+            window.uploadImage = async function() {
+                const fileInput = document.getElementById('imageUpload');
+                const file = fileInput.files[0];
+                if (!file) {
+                    alert('Please select an image.');
+                    return;
+                }
 
-                   const formData = new FormData();
-                   formData.append('image', file);
+                const formData = new FormData();
+                formData.append('image', file);
 
-                   const response = await fetch('http://localhost:3000/api/upload', {
-                       method: 'POST',
-                       body: formData
-                   });
+                const response = await fetch('http://localhost:3000/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
 
-                   const result = await response.json();
-                   if (result.success) {
-                       alert('Image uploaded successfully!');
-                       const carouselInner = document.querySelector('#carouselGallery .carousel-inner');
-                       const newItem = document.createElement('div');
-                       newItem.className = 'carousel-item';
-                       newItem.innerHTML = `<img src="${result.imageUrl}" alt="Uploaded Image">`;
-                       carouselInner.appendChild(newItem);
-                       new bootstrap.Carousel(document.getElementById('carouselGallery'), {
-                           interval: 5000,
-                           ride: 'carousel'
-                       }).to(carouselInner.children.length - 1);
-                   } else {
-                       alert('Upload failed: ' + result.message);
-                   }
-               };
-           });
-       </script>
+                const result = await response.json();
+                if (result.success) {
+                    alert('Image uploaded successfully!');
+                    const carouselInner = document.querySelector('#carouselGallery .carousel-inner');
+                    const newItem = document.createElement('div');
+                    newItem.className = 'carousel-item';
+                    newItem.innerHTML = `<img src="${result.imageUrl}" alt="Uploaded Image">`;
+                    carouselInner.appendChild(newItem);
+                    new bootstrap.Carousel(document.getElementById('carouselGallery'), {
+                        interval: 5000,
+                        ride: 'carousel'
+                    }).to(carouselInner.children.length - 1);
+                } else {
+                    alert('Upload failed: ' + result.message);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
